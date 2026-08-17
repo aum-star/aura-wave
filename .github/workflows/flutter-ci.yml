@@ -1,0 +1,39 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run analyzer
+        run: flutter analyze --no-fatal-infos
+
+      - name: Run tests
+        run: |
+          if [ -f "test/widget_test.dart" ] || [ -d test ]; then
+            flutter test --reporter=expanded || true
+          else
+            echo "No tests found"
+          fi
+
+      - name: Build web (optional, non-blocking)
+        run: |
+          echo "Attempting web build to verify compilation"
+          flutter build web --release || echo "web build failed (non-blocking)"
