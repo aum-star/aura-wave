@@ -1,0 +1,24 @@
+name: aura_wave_desktop
+description: Enterprise-grade Invoicing & Billing Suite
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.20.3
+  http: ^1.2.1
+  crypto: ^3.0.3
+  convert: ^3.1.1
+  file_picker: ^10.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
