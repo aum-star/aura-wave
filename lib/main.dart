@@ -21,6 +21,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:file_picker/file_picker.dart';
@@ -1721,7 +1722,7 @@ class BarChartPainter extends CustomPainter {
 
       final labelPainter = TextPainter(
         text: TextSpan(text: labels[i], style: TextStyle(color: Colors.grey.shade700, fontSize: 11)),
-        textDirection: TextDirection.ltr,
+        textDirection: ui.TextDirection.ltr,
       )..layout();
       labelPainter.paint(canvas, Offset(x + (barWidth - labelPainter.width) / 2, size.height - 20));
     }
